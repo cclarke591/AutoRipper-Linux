@@ -1,7 +1,7 @@
 #!/bin/bash
 OUTPUT_DIR="/home/ripper/autorips/DVD"
 SOURCE_DRIVE="/dev/sr0"
-HANDBRAKE_PRESET="AppleTV 2"
+HANDBRAKE_PRESET="AppleTV 3"
 EXTENSION="m4v"
 function rip_dvd() {
         # Grab the DVD title

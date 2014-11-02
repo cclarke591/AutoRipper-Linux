@@ -1,0 +1,7 @@
+[Desktop Entry]
+Name=Rip Blu-ray
+Comment=This will start the automated Blu-ray ripping process
+Exec=ripbluray
+TryExec=ripbluray
+MimeType=x-content/video-bluray
+Type=Application

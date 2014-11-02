@@ -1,0 +1,8 @@
+[Default Applications]
+x-content/audio-cdda=ripcd.desktop;
+x-content/video-dvd=ripdvd.desktop;
+x-content/video-bluray=ripbluray.desktop
+[Added Associations]
+x-content/audio-cdda=ripcd.desktop;
+x-content/video-dvd=ripdvd.desktop;
+x-content/video-bluray=ripbluray.desktop;

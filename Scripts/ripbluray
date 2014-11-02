@@ -1,0 +1,34 @@
+#!/bin/bash
+OUTPUT_DIR="/home/ripper/autorips/Bluray"
+SOURCE_DRIVE="/dev/sr0"
+HANDBRAKE_PRESET="AppleTV 3"
+EXTENSION="mkv"
+MEDIASHARE_DIR="/mnt/plexmedia/Movies"
+LOG_DIR="/home/ripper/autorips/Bluray/Logs"
+function rip_bluray() {
+        # Grab the DVD title
+        BLURAY_TITLE=$(blkid -o value -s LABEL $SOURCE_DRIVE)
+       # Replace spaces with underscores
+        BLURAY_TITLE=${BLURAY_TITLE// /_}
+        # Backup the DVD to out hard drive
+        makemkvcon backup --progress=$OUTPUT_DIR/$BLURAY_TITLE-MAKEMKV-PROGRESS.log disc:0 $OUTPUT_DIR/$BLURAY_TITLE --decrypt > $OUTPUT_DIR/$BLURAY_TITLE-MAKEMKV.log
+        # HandBrake isn't ripping anything so we can pop out the disc
+        eject $SOURCE_DRIVE
+        # grep for the HandBrakeCLI process and get the PID
+        HANDBRAKE_PID=`ps aux|grep H\[a\]ndBrakeCLI`
+        set -- $HANDBRAKE_PID
+        HANDBRAKE_PID=$2
+        # Wait until our previous Handbrake job is done
+        if [ -n "$HANDBRAKE_PID" ]
+        then
+                while [ -e /proc/$HANDBRAKE_PID ]; do sleep 1; done
+        fi
+        # Old Location, Moving to after makemkv allows queueing. HandBrake isn't ripping anything so we can pop out the disc
+        # eject $SOURCE_DRIVE
+        # And now we can start encoding
+        HandBrakeCLI -i $OUTPUT_DIR/$BLURAY_TITLE --main-feature -o $OUTPUT_DIR/$BLURAY_TITLE.$EXTENSION --preset=$HANDBRAKE_PRESET > $OUTPUT_DIR/$BLURAY_TITLE-HANDBRAKE.log
+        # Clean up
+        rm -R $OUTPUT_DIR/$BLURAY_TITLE
+        mv $OUTPUT_DIR/$BLURAY_TITLE-* $LOGDIR/
+}
+rip_bluray

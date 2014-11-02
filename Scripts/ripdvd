@@ -1,0 +1,29 @@
+#!/bin/bash
+OUTPUT_DIR="/home/ripper/autorips/DVD"
+SOURCE_DRIVE="/dev/sr0"
+HANDBRAKE_PRESET="AppleTV 2"
+EXTENSION="m4v"
+function rip_dvd() {
+        # Grab the DVD title
+        DVD_TITLE=$(blkid -o value -s LABEL $SOURCE_DRIVE)
+        # Replace spaces with underscores
+        DVD_TITLE=${DVD_TITLE// /_}
+        # Backup the DVD to out hard drive
+        dvdbackup -i $SOURCE_DRIVE -o $OUTPUT_DIR -M -n $DVD_TITLE > $OUTPUT_DIR/$DVD_TITLE-DVDBACKUP.log
+        # grep for the HandBrakeCLI process and get the PID
+        HANDBRAKE_PID=`ps aux|grep H\[a\]ndBrakeCLI`
+        set -- $HANDBRAKE_PID
+        HANDBRAKE_PID=$2
+        # Wait until our previous Handbrake job is done
+        if [ -n "$HANDBRAKE_PID" ]
+        then
+                while [ -e /proc/$HANDBRAKE_PID ]; do sleep 1; done
+        fi
+        # HandBrake isn't ripping anything so we can pop out the disc
+        eject $SOURCE_DRIVE
+        # And now we can start encoding
+        HandBrakeCLI -i $OUTPUT_DIR/$DVD_TITLE -o $OUTPUT_DIR/$DVD_TITLE.$EXTENSION --preset=$HANDBRAKE_PRESET > $OUTPUT_DIR/$DVD_TITLE-HANDBRAKE.log
+        # Clean up
+        rm -R $OUTPUT_DIR/$DVD_TITLE
+}
+rip_dvd

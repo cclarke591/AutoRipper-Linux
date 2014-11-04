@@ -7,11 +7,13 @@
 #################################################
 echo "Welcome to the auto ripper installer"
 
+# Check for root acces
 if [ "$(id -u)" != "0" ]; then
    echo "Please run installer as root" 1>&2
    exit 1
 fi
 
+# we need the ripping user login for the MIME autorun system
 echo "Please enter username: "
 read script_user
 echo "You entered: $script_user is this correct?"
@@ -21,9 +23,38 @@ else
 	exit 1
 fi
 
+# Ask if we want to install CD Ripping
 read -p "Install auto CD ripping?" -n 1 -r
 echo    # (optional) move to a new line
 if [[ $REPLY =~ ^[Yy]$ ]]
+then
+	installcdrip="true"
+else
+	installcdrip="false"
+fi
+
+# Ask if we want to install DVD Ripping
+read -p "Install auto DVD ripping?" -n 1 -r
+echo    # (optional) move to a new line
+if [[ $REPLY =~ ^[Yy]$ ]]
+then
+	installdvdrip="true"
+else
+	installdvdrip="false"
+fi
+
+# Ask if we want to install BR Ripping
+read -p "Install auto Bluray ripping?" -n 1 -r
+echo    # (optional) move to a new line
+if [[ $REPLY =~ ^[Yy]$ ]]
+then
+	installbrrip="true"
+else
+	installbrrip="false"
+fi
+
+# CD Ripping install routine
+if [ $installcdrip -eq "true" ]
 then
 	echo "Updating Aptitude and Installing ABCDE."
 	echo "Updating Aptitude and Installing ABCDE." >> install.log

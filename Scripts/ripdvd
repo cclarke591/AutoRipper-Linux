@@ -8,11 +8,13 @@ function rip_dvd() {
         # We need to check to make sure our directories are sane
         if [ -d "$OUTPUT_DIR" ];
             then
+            echo "Output Directory Exists" &>> $OUTPUT_DIR/$DVD_TITLE-DVDBACKUP.log
             else
                 mkdir -p $OUTPUT_DIR
         fi
         if [ -d "$LOG_DIR"];
             then
+            echo "Log Directory Exists" &>> $OUTPUT_DIR/$DVD_TITLE-DVDBACKUP.log
             else
                 mkdir -p $LOGDIR
         fi

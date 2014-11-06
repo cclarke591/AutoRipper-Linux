@@ -78,7 +78,7 @@ then
 	echo "Updating Aptitude and Installing DVDBackup." >> install.log
 	read -p "Accept any EULAs during this process. Press [Enter] key to continue..."
 	sudo add-apt-repository -y ppa:stebbins/handbrake-snapshots &>> install.log
-	sudo cat "deb http://archive.ubuntu.com/ubuntu precise main universe restricted multiverse" > /etc/apt/sources.list
+	echo 'deb http://archive.ubuntu.com/ubuntu precise main universe restricted multiverse' | sudo sh -c 'cat >> /etc/apt/sources.list'
 	sudo apt-get -q update &>> install.log
    	sudo apt-get -y install dvdbackup git libtool handbrake-cli handbrake-gtk ubuntu-restricted-extras &>> install.log
    	sudo /usr/share/doc/libdvdread4/install-css.sh

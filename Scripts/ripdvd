@@ -42,6 +42,6 @@ function rip_dvd() {
         # Clean up
         rm -R $OUTPUT_DIR/$DVD_TITLE
         # Cleanup Any left over log files
-        mv $OUTPUT_DIR/$DVD_TITLE-* $LOGDIR/
+        mv $OUTPUT_DIR/$DVD_TITLE-* $LOG_DIR/
 }
 rip_dvd

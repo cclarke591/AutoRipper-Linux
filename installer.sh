@@ -78,10 +78,11 @@ then
 	echo "Updating Aptitude and Installing DVDBackup." >> install.log
 	read -p "Accept any EULAs during this process. Press [Enter] key to continue..."
 	sudo add-apt-repository -y ppa:stebbins/handbrake-snapshots &>> install.log
-	echo 'deb http://archive.ubuntu.com/ubuntu precise main universe restricted multiverse' | sudo sh -c 'cat >> /etc/apt/sources.list'
+	echo 'deb http://download.videolan.org/pub/debian/stable/ /' | sudo sh -c 'cat >> /etc/apt/sources.list' &>> install.log
+	echo 'deb-src http://download.videolan.org/pub/debian/stable/ /' | sudo sh -c 'cat >> /etc/apt/sources.list' &>> install.log
+	wget -O - http://download.videolan.org/pub/debian/videolan-apt.asc|sudo apt-key add - &>> install.log
 	sudo apt-get -q update &>> install.log
-   	sudo apt-get -y install dvdbackup git libtool handbrake-cli handbrake-gtk ubuntu-restricted-extras &>> install.log
-   	sudo /usr/share/doc/libdvdread4/install-css.sh
+   	sudo apt-get -y install dvdbackup git libtool handbrake-cli handbrake-gtk libdvdcss2 &>> install.log
    	sudo cp Scripts/ripdvd /usr/bin/ripdvd
    	sudo chmod +x /usr/bin/ripdvd
    	sudo cp MIMEs/ripdvd.desktop /usr/share/applications/ripdvd.desktop

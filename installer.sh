@@ -82,7 +82,7 @@ then
 	echo 'deb-src http://download.videolan.org/pub/debian/stable/ /' | sudo sh -c 'cat >> /etc/apt/sources.list' &>> install.log
 	wget -O - http://download.videolan.org/pub/debian/videolan-apt.asc|sudo apt-key add - &>> install.log
 	sudo apt-get -q update &>> install.log
-   	sudo apt-get -y install dvdbackup git libtool handbrake-cli handbrake-gtk libdvdcss2 &>> install.log
+   	sudo apt-get -y install dvdbackup git handbrake-cli handbrake-gtk libdvdcss2 &>> install.log
    	sudo cp Scripts/ripdvd /usr/bin/ripdvd
    	sudo chmod +x /usr/bin/ripdvd
    	sudo cp MIMEs/ripdvd.desktop /usr/share/applications/ripdvd.desktop

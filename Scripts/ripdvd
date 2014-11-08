@@ -1,7 +1,7 @@
 #!/bin/bash
 OUTPUT_DIR="/home/ripper/autorips/DVD"
 SOURCE_DRIVE="/dev/sr0"
-HANDBRAKE_PRESET="AppleTV 3"
+HANDBRAKE_PRESET="Normal"
 EXTENSION="m4v"
 LOG_DIR="$OUTPUT_DIR/Logs"
 function rip_dvd() {
@@ -38,7 +38,7 @@ function rip_dvd() {
                 while [ -e /proc/$HANDBRAKE_PID ]; do sleep 1; done
         fi
         # And now we can start encoding
-        HandBrakeCLI -i $OUTPUT_DIR/$DVD_TITLE -o $OUTPUT_DIR/$DVD_TITLE.$EXTENSION --preset=$HANDBRAKE_PRESET > $OUTPUT_DIR/$DVD_TITLE-HANDBRAKE.log
+        HandBrakeCLI -i $OUTPUT_DIR/$DVD_TITLE --main-feature -o $OUTPUT_DIR/$DVD_TITLE.$EXTENSION --preset=$HANDBRAKE_PRESET > $OUTPUT_DIR/$DVD_TITLE-HANDBRAKE.log
         # Clean up
         rm -R $OUTPUT_DIR/$DVD_TITLE
         # Cleanup Any left over log files

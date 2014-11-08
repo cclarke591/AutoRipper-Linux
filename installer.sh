@@ -95,28 +95,41 @@ else
 fi
 
 # BR Ripping install routine
-#if [ $installbrrip -eq "true" ]
-#then
-#	echo "Updating Aptitude and Installing ABCDE."
-#	echo "Updating Aptitude and Installing ABCDE." >> install.log
-#	sudo apt-get -q update &>> install.log
-#    sudo apt-get -y install abcde &>> install.log
-#    cp MIMEs/ripcd.desktop /usr/share/applications/ripcd.desktop
-#    if [ -f /home/$script_user/.local/share/applications/mimeapps.list]
-#    then
-#    	echo "Existing mimeapps.list found. Moving to .bak file." >> install.log
-#    	mv /home/$script_user/.local/share/applications/mimeapps.list /home/$script_user/.local/share/applications/mimeapps.list.bak
-#		cp MIMEs/mimeapps.list /home/$script_user/.local/share/applications/
-#	else
-#		echo "Copying mimeapps.list." >> install.log
-#		cp MIMEs/mimeapps.list /home/$script_user/.local/share/applications/
-#	fi
-#	echo "Auto CD Ripping Installed!"
-#	echo "Please change the default application for CDs in"
-#	echo "System Settings -> Details -> Removable Media"
-#	echo "Change CD audio to Rip CD"
-#else
-#fi
+if [ $installbrrip -eq 1]
+then
+	if [ $installdvdrip -eq 1 ]
+	then
+	echo "Some Pre Reqs have been installed!" &>> install.log
+	else
+	sudo add-apt-repository -y ppa:stebbins/handbrake-snapshots &>> install.log
+	echo 'deb http://download.videolan.org/pub/debian/stable/ /' | sudo sh -c 'cat >> /etc/apt/sources.list' &>> install.log
+	echo 'deb-src http://download.videolan.org/pub/debian/stable/ /' | sudo sh -c 'cat >> /etc/apt/sources.list' &>> install.log
+	wget -O - http://download.videolan.org/pub/debian/videolan-apt.asc|sudo apt-key add - &>> install.log
+	sudo apt-get -q update &>> install.log
+	sudo apt-get -y install git handbrake-cli handbrake-gtk libdvdcss2 &>> install.log
+	fi
+	sudo apt-get -y install build-essential libc6-dev libssl-dev libexpat1-dev libavcodec-dev libgl1-mesa-dev libqt4-dev
+	wget http://www.makemkv.com/download/makemkv-bin-1.8.14.tar.gz
+	wget http://www.makemkv.com/download/makemkv-oss-1.8.14.tar.gz
+	tar xvzf makemkv-oss-1.8.14.tar.gz
+	tar xvzf makemkv-bin-1.8.14.tar.gz
+	cd makemkv-oss-1.8.14/
+	./configure
+	make && sudo make install
+	cd ..
+	cd makemkv-bin-1.8.14/
+	make && sudo make install
+	cd ..
+	rm -R makemkv*
+	sudo cp Scripts/ripbluray /usr/bin/ripbluray
+	sudo chmod +x /usr/bin/ripbluray
+   	sudo cp MIMEs/ripbluray.desktop /usr/share/applications/ripbluray.desktop
+   	echo "Auto Bluray Ripping Installed!"
+	echo "Please change the default application for DVDs in"
+	echo "System Settings -> Details -> Removable Media -> Other Media"
+	echo "Change Blu-ray Video Disc to Rip Bluray"
+else
+fi
 
 echo "Existing mimeapps.list found. Moving to .bak file." &>> install.log
 echo "Existing mimeapps.list found. Missing file error is OK here!"

@@ -125,26 +125,38 @@ then
 	sudo add-apt-repository -y ppa:stebbins/handbrake-snapshots &>> BRRIP-install.log
 	echo 'deb http://download.videolan.org/pub/debian/stable/ /' | sudo sh -c 'cat >> /etc/apt/sources.list' &>> BRRIP-install.log
 	echo 'deb-src http://download.videolan.org/pub/debian/stable/ /' | sudo sh -c 'cat >> /etc/apt/sources.list' &>> BRRIP-install.log
-	wget -O - http://download.videolan.org/pub/debian/videolan-apt.asc|sudo apt-key add - &>> BRRIP-install.log
+	wget -quiet -O - http://download.videolan.org/pub/debian/videolan-apt.asc|sudo apt-key add - &>> BRRIP-install.log
 	sudo apt-get -q update &>> BRRIP-install.log
 	sudo apt-get -y install git handbrake-cli handbrake-gtk libdvdcss2 &>> BRRIP-install.log
 	fi
+	echo "" &>> BRRIP-install.log
+	echo "---------------------------------------" &>> BRRIP-install.log
+	echo "" &>> BRRIP-install.log
 	sudo apt-get -y install build-essential libc6-dev libssl-dev libexpat1-dev libavcodec-dev libgl1-mesa-dev libqt4-dev &>> BRRIP-install.log
-	wget http://www.makemkv.com/download/makemkv-bin-1.8.14.tar.gz &>> BRRIP-install.log
-	wget http://www.makemkv.com/download/makemkv-oss-1.8.14.tar.gz &>> BRRIP-install.log
+	echo "" &>> BRRIP-install.log
+	echo "---------------------------------------" &>> BRRIP-install.log
+	echo "" &>> BRRIP-install.log
+	wget -quiet http://www.makemkv.com/download/makemkv-bin-1.8.14.tar.gz &>> BRRIP-install.log
+	wget -quiet http://www.makemkv.com/download/makemkv-oss-1.8.14.tar.gz &>> BRRIP-install.log
 	tar xvzf makemkv-oss-1.8.14.tar.gz &>> BRRIP-install.log
 	tar xvzf makemkv-bin-1.8.14.tar.gz &>> BRRIP-install.log
 	cd makemkv-oss-1.8.14/ &>> BRRIP-install.log
 	./configure &>> BRRIP-install.log
-	make && sudo make install &>> BRRIP-install.log
+	make --quiet && sudo make install &>> BRRIP-install.log
 	cd .. &>> BRRIP-install.log
 	cd makemkv-bin-1.8.14/ &>> BRRIP-install.log
-	make && sudo make install
+	make --quiet && sudo make install
 	cd .. &>> BRRIP-install.log
 	rm -R makemkv* &>> BRRIP-install.log
+	echo "" &>> BRRIP-install.log
+	echo "---------------------------------------" &>> BRRIP-install.log
+	echo "" &>> BRRIP-install.log
 	sudo cp Scripts/ripbluray /usr/bin/ripbluray &>> BRRIP-install.log
 	sudo chmod +x /usr/bin/ripbluray &>> BRRIP-install.log
    	sudo cp MIMEs/ripbluray.desktop /usr/share/applications/ripbluray.desktop &>> BRRIP-install.log
+   	echo "" &>> BRRIP-install.log
+	echo "---------------------------------------" &>> BRRIP-install.log
+	echo "" &>> BRRIP-install.log
    	echo "Auto Bluray Ripping Installed!"
 	echo "Please change the default application for DVDs in"
 	echo "System Settings -> Details -> Removable Media -> Other Media"

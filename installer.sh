@@ -112,7 +112,7 @@ then
 	echo "System Settings -> Details -> Removable Media"
 	echo "Change DVD Video to Rip DVD"
 else
-	echo "DVD Ripping not selected for install." >> install.log
+	echo "DVD Ripping not selected for install." &>> DVDRIP-install.log
 fi
 
 # BR Ripping install routine
@@ -150,6 +150,7 @@ then
 	echo "System Settings -> Details -> Removable Media -> Other Media"
 	echo "Change Blu-ray Video Disc to Rip Bluray"
 else
+	echo "Bluray Ripping not selected for install." >> install.log
 fi
 
 echo "Existing mimeapps.list found. Moving to .bak file." &>> install.log

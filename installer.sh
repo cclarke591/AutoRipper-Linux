@@ -3,7 +3,7 @@
 # AutoRipper Installer							#
 # Written by Steve Tomaszewski					#
 # Github: https://github.com/sk8r776/AutoRipper	#
-# Version: 0.1 (Alpha Build)                    #
+# Version: 1.0 Relase                           #
 #################################################
 echo "Welcome to the auto ripper installer"
 

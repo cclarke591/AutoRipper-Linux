@@ -125,7 +125,7 @@ then
 	sudo add-apt-repository -y ppa:stebbins/handbrake-snapshots &>> BRRIP-install.log
 	echo 'deb http://download.videolan.org/pub/debian/stable/ /' | sudo sh -c 'cat >> /etc/apt/sources.list' &>> BRRIP-install.log
 	echo 'deb-src http://download.videolan.org/pub/debian/stable/ /' | sudo sh -c 'cat >> /etc/apt/sources.list' &>> BRRIP-install.log
-	wget -quiet -O - http://download.videolan.org/pub/debian/videolan-apt.asc|sudo apt-key add - &>> BRRIP-install.log
+	wget -q -O - http://download.videolan.org/pub/debian/videolan-apt.asc|sudo apt-key add - &>> BRRIP-install.log
 	sudo apt-get -q update &>> BRRIP-install.log
 	sudo apt-get -y install git handbrake-cli handbrake-gtk libdvdcss2 &>> BRRIP-install.log
 	fi
@@ -136,8 +136,8 @@ then
 	echo "" &>> BRRIP-install.log
 	echo "---------------------------------------" &>> BRRIP-install.log
 	echo "" &>> BRRIP-install.log
-	wget -quiet http://www.makemkv.com/download/makemkv-bin-1.8.14.tar.gz &>> BRRIP-install.log
-	wget -quiet http://www.makemkv.com/download/makemkv-oss-1.8.14.tar.gz &>> BRRIP-install.log
+	wget -q http://www.makemkv.com/download/makemkv-bin-1.8.14.tar.gz &>> BRRIP-install.log
+	wget -q http://www.makemkv.com/download/makemkv-oss-1.8.14.tar.gz &>> BRRIP-install.log
 	tar xvzf makemkv-oss-1.8.14.tar.gz &>> BRRIP-install.log
 	tar xvzf makemkv-bin-1.8.14.tar.gz &>> BRRIP-install.log
 	cd makemkv-oss-1.8.14/ &>> BRRIP-install.log

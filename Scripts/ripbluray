@@ -8,6 +8,7 @@ function rip_bluray() {
         # We need to check to make sure our directories are sane
         if [ -d "$OUTPUT_DIR" ];
             then
+            echo "Output Directory Exists" &>> $OUTPUT_DIR/$BLURAY_TITLE-DVDBACKUP.log
             else
                 mkdir -p $OUTPUT_DIR
         fi

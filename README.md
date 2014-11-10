@@ -18,8 +18,8 @@ Install instrucitons are located at the following link:
 
 Thanks
 ==========
-http://www.makemkv.com/ - For such an awesome Bluray ripping software
-https://handbrake.fr/ - For an amazing encoder, and for it being free!
+http://www.makemkv.com/ - For such an awesome Bluray ripping software  
+https://handbrake.fr/ - For an amazing encoder, and for it being free!  
 
-Last but not least, Pat Hartl, for the idea and inpiration.
-Please visit his blog post here: http://pathartl.me/blog/2013/12/01/the-ultimate-automated-ripping-machine/
+Last but not least, Pat Hartl, for the idea and inpiration.  
+Please visit his blog post here: http://pathartl.me/blog/2013/12/01/the-ultimate-automated-ripping-machine/  

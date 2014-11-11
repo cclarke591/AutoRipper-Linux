@@ -12,7 +12,7 @@ function rip_dvd() {
             else
                 mkdir -p $OUTPUT_DIR
         fi
-        if [ -d "$LOG_DIR"];
+        if [ -d "$LOG_DIR" ];
             then
             echo "Log Directory Exists" &>> $OUTPUT_DIR/$DVD_TITLE-DVDBACKUP.log
             else

@@ -1,10 +1,14 @@
 #!/bin/bash
-OUTPUT_DIR="/home/ripper/autorips/Bluray"
+OUTPUT_DIR="$HOME/autorips/Bluray"
 SOURCE_DRIVE="/dev/sr0"
 HANDBRAKE_PRESET="AppleTV 3"
 EXTENSION="mkv"
 LOG_DIR="$OUTPUT_DIR/Logs"
 function rip_bluray() {
+        # Grab the DVD title
+        BLURAY_TITLE=$(blkid -o value -s LABEL $SOURCE_DRIVE)
+        #Replace spaces with underscores
+        BLURAY_TITLE=${BLURAY_TITLE// /_}
         # We need to check to make sure our directories are sane
         if [ -d "$OUTPUT_DIR" ];
             then
@@ -12,16 +16,12 @@ function rip_bluray() {
             else
                 mkdir -p $OUTPUT_DIR
         fi
-        if [ -d "$LOG_DIR"];
+        if [ -d "$LOG_DIR" ];
             then
             echo "Log Directory Exists" &>> $OUTPUT_DIR/$BLURAY_TITLE-DVDBACKUP.log
             else
-                mkdir -p $LOGDIR
+                mkdir -p $LOG_DIR
         fi
-        # Grab the DVD title
-        BLURAY_TITLE=$(blkid -o value -s LABEL $SOURCE_DRIVE)
-        #Replace spaces with underscores
-        BLURAY_TITLE=${BLURAY_TITLE// /_}
         # Backup the DVD to out hard drive
         makemkvcon backup --progress=$OUTPUT_DIR/$BLURAY_TITLE-MAKEMKV-PROGRESS.log disc:0 $OUTPUT_DIR/$BLURAY_TITLE --decrypt > $OUTPUT_DIR/$BLURAY_TITLE-MAKEMKV.log
         # HandBrake isn't ripping anything so we can pop out the disc

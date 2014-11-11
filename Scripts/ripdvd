@@ -1,10 +1,14 @@
 #!/bin/bash
-OUTPUT_DIR="/home/ripper/autorips/DVD"
+OUTPUT_DIR="$HOME/autorips/DVD"
 SOURCE_DRIVE="/dev/sr0"
 HANDBRAKE_PRESET="Normal"
 EXTENSION="m4v"
 LOG_DIR="$OUTPUT_DIR/Logs"
 function rip_dvd() {
+        # Grab the DVD title
+        DVD_TITLE=$(blkid -o value -s LABEL $SOURCE_DRIVE)
+        # Replace spaces with underscores
+        DVD_TITLE=${DVD_TITLE// /_}
         # We need to check to make sure our directories are sane
         if [ -d "$OUTPUT_DIR" ];
             then
@@ -16,12 +20,8 @@ function rip_dvd() {
             then
             echo "Log Directory Exists" &>> $OUTPUT_DIR/$DVD_TITLE-DVDBACKUP.log
             else
-                mkdir -p $LOGDIR
+                mkdir -p $LOG_DIR
         fi
-        # Grab the DVD title
-        DVD_TITLE=$(blkid -o value -s LABEL $SOURCE_DRIVE)
-        # Replace spaces with underscores
-        DVD_TITLE=${DVD_TITLE// /_}
         # Backup the DVD to out hard drive
         dvdbackup -i $SOURCE_DRIVE -o $OUTPUT_DIR -M -n $DVD_TITLE > $OUTPUT_DIR/$DVD_TITLE-DVDBACKUP.log
         # HandBrake isn't ripping anything so we can pop out the disc

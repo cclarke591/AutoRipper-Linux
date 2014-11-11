@@ -14,7 +14,7 @@ Requirments
 
 Install instrucitons are located at the following link:
 ==========
-
+http://steve.fragout-gaming.com/wiki/index.php/AutoripperLinux
 
 Thanks
 ==========

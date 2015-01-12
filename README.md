@@ -79,7 +79,7 @@ IMPORTANT NOTE
 The Software, as defined below, is protected by copyright, which is vested in GuinpinSoft inc.
 </pre>
 
-*Please read the EULA and accept.
+*Please read the EULA and accept.  
 *To accept hit Q and type yes or no.
 
 

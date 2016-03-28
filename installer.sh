@@ -138,13 +138,13 @@ then
 	echo "" &>> BRRIP-install.log
 	wget -q http://www.makemkv.com/download/makemkv-bin-1.9.9.tar.gz &>> BRRIP-install.log
 	wget -q http://www.makemkv.com/download/makemkv-oss-1.9.9.tar.gz &>> BRRIP-install.log
-	tar xvzf makemkv-oss-1.9.0.tar.gz &>> BRRIP-install.log
-	tar xvzf makemkv-bin-1.9.0.tar.gz &>> BRRIP-install.log
-	cd makemkv-oss-1.9.0/ &>> BRRIP-install.log
+	tar xvzf makemkv-oss-1.9.9.tar.gz &>> BRRIP-install.log
+	tar xvzf makemkv-bin-1.9.9.tar.gz &>> BRRIP-install.log
+	cd makemkv-oss-1.9.9/ &>> BRRIP-install.log
 	./configure &>> BRRIP-install.log
 	make --quiet && sudo make install &>> BRRIP-install.log
 	cd .. &>> BRRIP-install.log
-	cd makemkv-bin-1.9.0/ &>> BRRIP-install.log
+	cd makemkv-bin-1.9.9/ &>> BRRIP-install.log
 	make --quiet && sudo make install
 	cd .. &>> BRRIP-install.log
 	rm -R makemkv* &>> BRRIP-install.log

@@ -30,7 +30,7 @@ Install Procedures
 <pre> sudo apt-get install git </pre>
 
 2. Next we need to clone the repo to our ripping machine
-<pre> git clone https://github.com/sk8r776/AutoRipper-Linux.git </pre>
+<pre> git clone https://github.com/cclarke591/AutoRipper-Linux.git </pre>
 
 3. Lets move into the AutoRipper directory
 <pre>cd AutoRipper-Linux</pre>

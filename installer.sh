@@ -83,7 +83,9 @@ then
 	echo "" &>> DVDRIP-install.log
 	echo "---------------------------------------" &>> DVDRIP-install.log
 	echo "" &>> DVDRIP-install.log
-	sudo add-apt-repository -y ppa:stebbins/handbrake-snapshots &>> DVDRIP-install.log
+	# Commented out this line and added the below 2 instead; sudo add-apt-repository -y ppa:stebbins/handbrake-snapshots &>> DVDRIP-install.log
+	sudo add-apt-repository ppa:stebbins/handbrake-releases &>> DVDRIP-install.log
+	sudo apt-get update &>> DVDRIP-install.log
 	echo "" &>> DVDRIP-install.log
 	echo "---------------------------------------" &>> DVDRIP-install.log
 	echo "" &>> DVDRIP-install.log
@@ -132,20 +134,22 @@ then
 	echo "" &>> BRRIP-install.log
 	echo "---------------------------------------" &>> BRRIP-install.log
 	echo "" &>> BRRIP-install.log
-	sudo apt-get -y install build-essential libc6-dev libssl-dev libexpat1-dev libavcodec-dev libgl1-mesa-dev libqt4-dev &>> BRRIP-install.log
+	# Modified the below line from https://www.makemkv.com/forum/viewtopic.php?f=3&t=224, on Dec 7 2018
+	sudo apt-get install build-essential pkg-config libc6-dev libssl-dev libexpat1-dev libavcodec-dev libgl1-mesa-dev libqt4-dev zlib1g-dev &>> BRRIP-install.log
 	echo "" &>> BRRIP-install.log
 	echo "---------------------------------------" &>> BRRIP-install.log
 	echo "" &>> BRRIP-install.log
-	wget -q http://www.makemkv.com/download/makemkv-bin-1.9.5.tar.gz &>> BRRIP-install.log
-	wget -q http://www.makemkv.com/download/makemkv-oss-1.9.5.tar.gz &>> BRRIP-install.log
-	tar xvzf makemkv-oss-1.9.0.tar.gz &>> BRRIP-install.log
-	tar xvzf makemkv-bin-1.9.0.tar.gz &>> BRRIP-install.log
-	cd makemkv-oss-1.9.0/ &>> BRRIP-install.log
+	#Modified the below lines for updating, also from https://www.makemkv.com/forum/viewtopic.php?f=3&t=224, on Dec 7th 2018
+	wget -q http://www.makemkv.com/download/makemkv-bin-1.14.2.tar.gz &>> BRRIP-install.log
+	wget -q http://www.makemkv.com/download/makemkv-oss-1.14.2.tar.gz &>> BRRIP-install.log
+	tar xvzf makemkv-bin-1.14.2.tar.gz &>> BRRIP-install.log
+	tar xvzf makemkv-oss-1.14.2.tar.gz &>> BRRIP-install.log
+	cd makemkv-oss-1.14.2/ &>> BRRIP-install.log
 	./configure &>> BRRIP-install.log
-	make --quiet && sudo make install &>> BRRIP-install.log
+	make -s && sudo make install &>> BRRIP-install.log
 	cd .. &>> BRRIP-install.log
-	cd makemkv-bin-1.9.0/ &>> BRRIP-install.log
-	make --quiet && sudo make install
+	cd makemkv-bin-1.14.2/ &>> BRRIP-install.log
+	make -s && sudo make install
 	cd .. &>> BRRIP-install.log
 	rm -R makemkv* &>> BRRIP-install.log
 	echo "" &>> BRRIP-install.log

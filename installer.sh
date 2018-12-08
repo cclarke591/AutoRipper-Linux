@@ -127,7 +127,7 @@ then
 	then
 	echo "Some Pre Reqs have been installed!" &>> BRRIP-install.log
 	else
-	sudo add-apt-repository -y ppa:stebbins/handbrake-snapshots &>> BRRIP-install.log
+	sudo add-apt-repository -y ppa:stebbins/handbrake-releases &>> BRRIP-install.log
 	echo 'deb http://download.videolan.org/pub/debian/stable/ /' | sudo sh -c 'cat >> /etc/apt/sources.list' &>> BRRIP-install.log
 	echo 'deb-src http://download.videolan.org/pub/debian/stable/ /' | sudo sh -c 'cat >> /etc/apt/sources.list' &>> BRRIP-install.log
 	wget -q -O - http://download.videolan.org/pub/debian/videolan-apt.asc|sudo apt-key add - &>> BRRIP-install.log

@@ -138,7 +138,7 @@ then
 	echo "---------------------------------------" &>> BRRIP-install.log
 	echo "" &>> BRRIP-install.log
 	# Modified the below line from https://www.makemkv.com/forum/viewtopic.php?f=3&t=224, on Dec 7 2018
-	sudo apt-get install build-essential pkg-config libc6-dev libssl-dev libexpat1-dev libavcodec-dev libgl1-mesa-dev libqt4-dev zlib1g-dev &>> BRRIP-install.log
+	sudo apt-get -y install build-essential pkg-config libc6-dev libssl-dev libexpat1-dev libavcodec-dev libgl1-mesa-dev libqt4-dev zlib1g-dev &>> BRRIP-install.log
 	echo "" &>> BRRIP-install.log
 	echo "---------------------------------------" &>> BRRIP-install.log
 	echo "" &>> BRRIP-install.log

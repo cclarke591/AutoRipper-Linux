@@ -59,7 +59,7 @@ then
 	echo "" &>> CDRIP-install.log
 	echo "---------------------------------------" &>> CDRIP-install.log
 	echo "" &>> CDRIP-install.log
-    sudo apt-get -y install abcde &>> CDRIP-install.log
+    sudo apt-get -y install abcde
     echo
     echo
     echo

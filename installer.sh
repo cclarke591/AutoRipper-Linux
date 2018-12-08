@@ -86,6 +86,7 @@ then
 	# Commented out this line and added the below 2 instead; sudo add-apt-repository -y ppa:stebbins/handbrake-snapshots &>> DVDRIP-install.log
 	sudo add-apt-repository ppa:stebbins/handbrake-releases &>> DVDRIP-install.log
 	sudo apt-get update &>> DVDRIP-install.log
+	yes
 	echo "" &>> DVDRIP-install.log
 	echo "---------------------------------------" &>> DVDRIP-install.log
 	echo "" &>> DVDRIP-install.log
